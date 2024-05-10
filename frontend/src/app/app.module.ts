@@ -14,6 +14,7 @@ import { NavbarRegistroComponent } from './navbar-registro/navbar-registro.compo
 import { FormLoginComponent } from './form-login/form-login.component';
 import { ContactComponent } from './contact/contact.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {NavbarUsuariologgedComponent} from "./navbar-usuariologged/navbar-usuariologged.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NavbarRegistroComponent,
     FormLoginComponent,
     ContactComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavbarUsuariologgedComponent,
+    NavbarUsuariologgedComponent
   ],
   imports: [
     BrowserModule,

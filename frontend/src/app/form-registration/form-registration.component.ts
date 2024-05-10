@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsuarioService } from '../services/usuario.service';
+import { AuthService } from '../services/auth.service'; // Verifica que este es el nombre correcto
 
 @Component({
   selector: 'app-form-registration',
@@ -13,8 +13,8 @@ export class FormRegistrationComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private usuarioService: UsuarioService,
-    private router: Router  // Injectar el Router para manejar redireccionamientos
+    private authService: AuthService, // Verifica que este es el nombre correcto y que tiene los métodos adecuados
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,10 +42,9 @@ export class FormRegistrationComponent implements OnInit {
         preferencias: this.extractPreferences()
       };
 
-      this.usuarioService.registerUser(formData).subscribe({
+      this.authService.registerUser(formData).subscribe({
         next: (response) => {
           console.log('Usuario registrado con éxito', response);
-          // Aquí podrías guardar el token en localStorage y actualizar el estado de autenticación
           this.router.navigate(['/dashboard']);  // Redirige al usuario al dashboard
         },
         error: (error) => {
