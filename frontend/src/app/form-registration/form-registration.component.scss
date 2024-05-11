@@ -1,11 +1,12 @@
-//----------- ESTILOS GENERALES ------------
+/* Estilos generales */
 body {
   background-color: #f4f4f4;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 105vh; /* Establece la altura del body al 100% de la ventana del navegador */}
+
+}
 
 @media (max-width: 768px) {
   body {
@@ -30,16 +31,16 @@ body {
   }
 }
 
-
-//----------- ESTILOS DE TITULOS ------------
+/* Estilos de títulos */
 h2 {
   text-align: center;
   font-size: 3rem;
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
   margin-top: -5%;
-  color:#484848;
+  color: #484848;
 }
+
 h4 {
   text-align: center;
   letter-spacing: 0.2rem;
@@ -51,79 +52,66 @@ h4 {
   border-radius: 10px;
   margin-bottom: 2%;
 }
-h5{
+
+h5 {
   text-align: justify;
   font-size: 2rem;
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
   margin-top: 0%;
-
-  color:#484848;
-
+  color: #484848;
 }
 
-
-//----------- TAMANIO DEL FORMULARIO INCLUYE TODO   ------------
+/* Tamaño del formulario */
 .container {
   max-width: 80%;
   margin-top: 10%;
 }
 
-
-
-//----------- ESTILOS PARA LAS CAJITAS DE NOMBRE, APELLIDO ETC  ------------
+/* Estilos de los inputs */
 .form-control {
-
   border: none;
   border-bottom: 2px solid #466466;
   border-radius: 0;
   padding-left: 10px;
-  background-color:#e4e5e3;
+  background-color: #e4e5e3;
   color: #e4e5e3;
   transition: border-color 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra ligera */
+  font-size: 0.8rem; /* Tamaño de fuente más pequeño */
 }
+
 .form-control:focus {
   border-color: #8c8c8c;
   box-shadow: none;
 }
 
-
-//----------- ESTILOS PARA LA IMAGEN DE FONDO   ------------
+/* Estilos del formulario */
 .form-box {
   border: 2px solid #466466;
   background-color: rgba(70, 100, 102, 0.3); /* Añade transparencia al color de fondo */
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  padding: 50px;
+  padding: 30px; /* Reducir el padding */
 }
 
 .form-group {
-  margin-top: 20px;
+  margin-top: 15px; /* Reducir el margen superior */
   color: #466466;
   font-weight: bold;
 }
 
-
-//----------- ESTILOS PARA LAS PREFERENCIAS  ------------
-.form-group.preferencias {
-  color: #484848;
-  font-weight: lighter;
-}
-
-
-
-//----------- BOTON DE REGISTRO  ------------
+/* Botón de registro */
 .btn {
   background-color: #466466;
   color: #e4e5e3;
   border-radius: 10px;
   width: 100%;
-
   transition: background-color 0.3s ease;
+  font-size: 1rem; /* Tamaño de fuente */
 }
 
 .btn:hover {
   background-color: #e4e5e3;
+  color: #466466;
 }
-
