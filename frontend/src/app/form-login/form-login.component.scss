@@ -5,7 +5,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 140vh; /* Establece la altura del body al 100% de la ventana del navegador */
+  height: 100vh; /* Establece la altura del body al 100% de la ventana del navegador */
+  margin: 0; /* Elimina el margen predeterminado del body */
 }
 
 /* Estilos para tamaños de pantalla pequeños (móviles) */
@@ -35,13 +36,24 @@ h2 {
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
   color: #484848;
-  margin-top: -10%;
+}
+
+h4 {
+  text-align: center;
+  letter-spacing: 0.2rem;
+  font-size: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #466466;
+  color: #e4e5e3;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 2%;
 }
 
 /* Tamaño del formulario */
 .container {
   max-width: 80%;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 /* Estilos de los inputs */
@@ -51,7 +63,7 @@ h2 {
   border-radius: 0;
   padding-left: 10px;
   background-color: #e4e5e3;
-  color: #484848; /* Utilizando la variable de color del texto */
+  color: #e4e5e3;
   transition: border-color 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra ligera */
 }
@@ -76,21 +88,13 @@ h2 {
   font-weight: bold;
 }
 
-/* Mapa de ubicación */
-.mapa-ubicacion {
-  width: 100%;
-  height: 300px;
-  border-radius: 15px;
-  margin-top: 20px;
-}
-
 /* Botón de envío */
 .btn {
   background-color: #466466;
   color: #e4e5e3;
   border-radius: 10px;
   width: 100%;
-  margin-top: 35%;
+  margin-top: 10px;
   transition: background-color 0.3s ease;
 }
 
