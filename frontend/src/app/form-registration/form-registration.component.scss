@@ -75,7 +75,7 @@ h5 {
   border-radius: 0;
   padding-left: 10px;
   background-color: #e4e5e3;
-  color: #e4e5e3;
+  color: #333; /* Asegura que el texto sea visible */
   transition: border-color 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra ligera */
   font-size: 0.8rem; /* Tamaño de fuente más pequeño */
@@ -115,3 +115,42 @@ h5 {
   background-color: #e4e5e3;
   color: #466466;
 }
+
+/* Estilo para la caja emergente de error */
+.text-danger{
+  font-size: 0.7rem;
+  color: #dc3545;
+  margin-top: 0.2rem;
+  background-color: #f8d7da;
+  border-radius: 0.25rem;
+  position: absolute; /* Permite posicionar la caja emergente */
+  z-index: 1000; /* Asegura que la caja emergente esté por encima de otros elementos */
+  width: 100%; /* Ajusta el ancho de la caja emergente al ancho del campo de entrada */
+}
+
+.form-group {
+  position: relative; /* Necesario para que .error-popup se posicione correctamente */
+}
+
+.errorRepeatEmail {
+  color: #d9534f; /* Color rojo para indicar un mensaje de error */
+  background-color: #f2dede; /* Color de fondo */
+  padding: 10px; /* Espacio interno */
+  border: 1px solid #ebccd1; /* Borde rojo */
+  border-radius: 4px; /* Bordes redondeados */
+  margin-top: 10px; /* Espacio superior */
+}
+
+
+.preferences-title {
+  color: red;
+  display: inline;
+}
+
+.preferences-title.empty {
+  visibility: hidden;
+}
+.asteriscoSeleccion{
+  color: red;
+}
+
