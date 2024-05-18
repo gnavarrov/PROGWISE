@@ -3,6 +3,7 @@ package com.progwise.backend.modelo;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 
 import java.security.Timestamp;
 import java.time.LocalDate;
@@ -20,12 +21,15 @@ public class Usuario {
     @Column(nullable = false, length = 45)
     private String nombre;
 
+    @Getter
     @Column(nullable = false, length = 45)
     private String correo;
 
-    @Column(name = "contraseña", nullable = false, length = 45)
+    @Getter
+    @Column(name = "password", nullable = false, length = 45)
     private String contraseña;
 
     @Column(name = "fecha_registro", columnDefinition = "DATE")
     private LocalDate fechaRegistro;
+
 }

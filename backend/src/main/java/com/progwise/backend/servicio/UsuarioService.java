@@ -13,6 +13,7 @@ import java.util.List;
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
 
+
     public Usuario registrarUsuario(Usuario usuario) {
         usuario.setFechaRegistro(LocalDate.now());
         return usuarioRepository.save(usuario);
@@ -20,5 +21,14 @@ public class UsuarioService {
 
     public List<Usuario> obtenerTodosLosUsuarios() {
         return usuarioRepository.findAll();
+    }
+
+    public boolean existeUsuarioConEmail(String correo) {
+        return usuarioRepository.existsByCorreo(correo);
+    }
+
+    public boolean validarCredenciales(String correo, String contraseña) {
+        Usuario usuario = usuarioRepository.findByCorreo(correo);
+        return usuario != null && usuario.getContraseña().equals(contraseña);
     }
 }
