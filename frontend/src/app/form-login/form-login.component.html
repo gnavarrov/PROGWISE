@@ -22,11 +22,13 @@
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <!-- PARTE DE RELLENAR CON DATOS -->
         <div class="form-group">
-          <input type="email" class="form-control" formControlName="email"  id="email">
+          <input type="email" formControlName="email" id="email" class="form-control" autocomplete="username">
+
           <label for="email">Email</label>
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" formControlName="password" id="password">
+          <input type="password" formControlName="password" id="password" class="form-control" autocomplete="current-password">
+
           <label for="password">Contraseña</label>
         </div>
         <button type="submit" class="btn btn-primary">Iniciar sesión</button>
