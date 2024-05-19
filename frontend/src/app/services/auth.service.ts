@@ -1,46 +1,47 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import {catchError, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+
+export interface AuthResponse {
+  token: string;
+  user?: any;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private baseUrlRegister = 'http://localhost:8080/api/usuarios/registrar';
   private baseUrlLogin = 'http://localhost:8080/api/usuarios/login';
-  private baseUrlRegister = 'http://localhost:8080/api/usuarios/registro';
 
   constructor(private http: HttpClient, private router: Router) {}
-  loginUser(userData: any): Observable<any> {
-    return this.http.post<any>(this.baseUrlLogin, userData, { withCredentials: true })
-      .pipe(
-        tap(response => {
-          console.log('Respuesta del servidor:', response);
-          if (response.message === "Inicio de sesión exitoso") {
-            console.log('Inicio de sesión exitoso');
-            this.router.navigate(['/dashboard']);
-          } else {
-            console.error('Error al iniciar sesión:', response);
-            throw new Error(response.message);
-          }
-        }),
-        catchError((error: any) => {
-          console.error('Error al iniciar sesión:', error);
-          return throwError(error);
-        })
-      );
-  }
 
-
-
-
-
-  registerUser(userData: any): Observable<any> {
-    return this.http.post(this.baseUrlRegister, userData, { withCredentials: true }).pipe(
-      tap(() => {
+  registerUser(userData: any): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(this.baseUrlRegister, userData).pipe(
+      tap((response: AuthResponse) => {
+        localStorage.setItem('userToken', response.token);
         this.router.navigate(['/dashboard']);
       })
     );
+  }
+
+  loginUser(userData: any): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(this.baseUrlLogin, userData).pipe(
+      tap((response: AuthResponse) => {
+        localStorage.setItem('userToken', response.token);
+        this.router.navigate(['/dashboard']);
+      })
+    );
+  }
+
+  logout() {
+    localStorage.removeItem('userToken');
+    this.router.navigate(['/login']);
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('userToken');
   }
 }

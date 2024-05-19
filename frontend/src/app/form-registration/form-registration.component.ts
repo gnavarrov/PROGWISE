@@ -10,9 +10,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class FormRegistrationComponent implements OnInit {
   registerForm!: FormGroup;
-  errorMessage: string = ''; // Variable para almacenar el mensaje de error
-  preferencesRequiredError: string= 'Indica alguna preferencia';
-  emailExistsError: string = 'Este correo electrónico ya está en uso';
+  errorMessage: string = ''; // Agrega esta propiedad
+  preferencesRequiredError: string = 'Debes seleccionar al menos una preferencia.'; // Agrega esta propiedad
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,7 +25,7 @@ export class FormRegistrationComponent implements OnInit {
       apellido: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      preferencias: this.formBuilder.group({
+      preferencias: new FormGroup({
         web: new FormControl(false),
         backend: new FormControl(false),
         frontend: new FormControl(false),
@@ -35,8 +34,14 @@ export class FormRegistrationComponent implements OnInit {
     });
   }
 
+  // Agrega este método para manejar la validación de preferencias
+  preferenceSel(): boolean {
+    const prefs = this.registerForm.get('preferencias') as FormGroup;
+    return Object.values(prefs.controls).some(control => control.value);
+  }
+
   onRegister(): void {
-    if (this.registerForm.valid && !this.preferenceSel()) {
+    if (this.registerForm.valid) {
       const formData = {
         nombre: this.registerForm.value.nombre,
         apellido: this.registerForm.value.apellido,
@@ -52,21 +57,10 @@ export class FormRegistrationComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error al registrar usuario', error);
-
-          if (error.status === 409) {
-            console.log('Correo electrónico en uso');
-            this.errorMessage = this.emailExistsError; // Captura el mensaje de error del cuerpo de la respuesta HTTP
-          }
+          this.errorMessage = 'El correo electrónico ya está registrado. Intenta con otro.';
         }
       });
-    } else {
-      console.log('Formulario no válido o ninguna preferencia seleccionada');
     }
-  }
-
-  preferenceSel(): boolean {
-    const preferences = this.registerForm.value.preferencias;
-    return !Object.values(preferences).some(value => value);
   }
 
   private extractPreferences(): any {

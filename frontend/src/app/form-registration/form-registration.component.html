@@ -14,6 +14,10 @@
     <h2 class="mb-4">REGÍSTRATE</h2>
     <h4>Por favor, proporciona tus datos personales para completar el proceso de registro</h4>
 
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
     <!-- COMIENZO DE FORMULARIO -->
     <div class="col-md-12 form-box">
       <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
@@ -53,7 +57,7 @@
           </div>
         </div>
         <!-- PREFERENCIAS -->
-        <h5 class="mb-4">Preferencias <span class="asteriscoSeleccion" *ngIf="preferenceSel()" >*</span></h5>
+        <h5 class="mb-4">Preferencias <span class="asteriscoSeleccion" *ngIf="preferenceSel()"> *</span></h5>
         <div *ngIf="preferenceSel()" class="alert alert-danger">{{ preferencesRequiredError }}</div>
 
         <div formGroupName="preferencias">
