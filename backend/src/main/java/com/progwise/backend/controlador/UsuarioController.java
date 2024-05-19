@@ -2,13 +2,13 @@ package com.progwise.backend.controlador;
 
 import com.progwise.backend.modelo.Usuario;
 import com.progwise.backend.servicio.UsuarioService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -19,42 +19,42 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping("/registro")
-    public ResponseEntity<?> registrarUsuario(@RequestBody Usuario usuario) {
-        String email = usuario.getCorreo();
+    @PostMapping("/registrar")
+    public ResponseEntity<?> registrarUsuario(@RequestBody Usuario usuario, HttpServletResponse response) {
+        if (usuarioService.existeUsuarioPorCorreo(usuario.getCorreo())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El correo ya está registrado");
+        }
+
         if (usuario.getContraseña() == null) {
-            return ResponseEntity.badRequest().body("La contraseña es obligatoria");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("La contraseña es obligatoria");
         }
 
-        // Verificar si el correo electrónico ya está registrado
-        if (usuarioService.existeUsuarioConEmail(email)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("El correo electrónico ya está registrado");
-        }
+        Usuario registrado = usuarioService.registrarUsuario(usuario);
 
-        // Lógica para guardar el usuario
-        usuarioService.registrarUsuario(usuario);
-        return ResponseEntity.ok(usuario);
+        // Configuración de la cookie para la sesión
+        Cookie cookie = new Cookie("userSession", registrado.getUsuario_id().toString());
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        return ResponseEntity.ok(registrado);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody Usuario usuario) {
-        String correo = usuario.getCorreo();
-        String contraseña = usuario.getContraseña();
+    public ResponseEntity<?> loginUsuario(@RequestBody Usuario usuario, HttpServletResponse response) {
+        Usuario usuarioAutenticado = usuarioService.autenticarUsuario(usuario.getCorreo(), usuario.getContraseña());
+        if (usuarioAutenticado != null) {
+            // Configuración de la cookie para la sesión
+            Cookie cookie = new Cookie("userSession", usuarioAutenticado.getUsuario_id().toString());
+            cookie.setHttpOnly(true);
+            cookie.setPath("/");
+            response.addCookie(cookie);
 
-        boolean credencialesValidas = usuarioService.validarCredenciales(correo, contraseña);
-
-        if (credencialesValidas) {
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "Inicio de sesión exitoso");
-            return ResponseEntity.ok(response);
+            return ResponseEntity.ok(usuarioAutenticado);
         } else {
-            Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("error", "Credenciales incorrectas");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
         }
     }
-
-
 
     @GetMapping("/listar")
     public ResponseEntity<List<Usuario>> listarTodosLosUsuarios() {
@@ -67,5 +67,4 @@ public class UsuarioController {
     public ResponseEntity<String> testController() {
         return ResponseEntity.ok("El controlador está funcionando correctamente.");
     }
-
 }

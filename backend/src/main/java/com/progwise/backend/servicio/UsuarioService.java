@@ -4,7 +4,6 @@ import com.progwise.backend.modelo.Usuario;
 import com.progwise.backend.repositorio.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.time.LocalDate;
 
 import java.util.List;
 
@@ -13,9 +12,7 @@ import java.util.List;
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
 
-
     public Usuario registrarUsuario(Usuario usuario) {
-        usuario.setFechaRegistro(LocalDate.now());
         return usuarioRepository.save(usuario);
     }
 
@@ -23,12 +20,19 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public boolean existeUsuarioConEmail(String correo) {
-        return usuarioRepository.existsByCorreo(correo);
+    public Usuario autenticarUsuario(String correo, String contraseña) {
+        if (correo == null) {
+            return null; // Retorna null si el correo es null
+        }
+        Usuario usuario = usuarioRepository.findByCorreo(correo);
+        if (usuario != null && usuario.getContraseña().equals(contraseña)) {
+            return usuario;
+        } else {
+            return null; // Retorna null si las credenciales son incorrectas
+        }
     }
 
-    public boolean validarCredenciales(String correo, String contraseña) {
-        Usuario usuario = usuarioRepository.findByCorreo(correo);
-        return usuario != null && usuario.getContraseña().equals(contraseña);
+    public boolean existeUsuarioPorCorreo(String correo) {
+        return usuarioRepository.existsByCorreo(correo);
     }
 }

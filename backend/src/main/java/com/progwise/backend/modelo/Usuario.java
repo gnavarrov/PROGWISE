@@ -1,14 +1,9 @@
 package com.progwise.backend.modelo;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 
-import java.security.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "usuarios", schema = "progwise")
@@ -21,15 +16,12 @@ public class Usuario {
     @Column(nullable = false, length = 45)
     private String nombre;
 
-    @Getter
     @Column(nullable = false, length = 45)
     private String correo;
 
-    @Getter
-    @Column(name = "password", nullable = false, length = 45)
+    @Column(name = "contraseña", nullable = false, length = 45)  // Asegúrate de que el nombre de la columna sea correcto
     private String contraseña;
 
     @Column(name = "fecha_registro", columnDefinition = "DATE")
     private LocalDate fechaRegistro;
-
 }
