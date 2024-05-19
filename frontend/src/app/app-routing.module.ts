@@ -4,15 +4,16 @@ import { HomeComponent } from './home/home.component';
 import { FormRegistrationComponent } from './form-registration/form-registration.component';
 import { FormLoginComponent } from './form-login/form-login.component';
 import { ContactComponent } from './contact/contact.component';
-import { DashboardComponent } from './dashboard/dashboard.component';  // Asegúrate de importar tu componente Dashboard
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './guards/auth.guard';  // Importa el AuthGuard
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },  // Redirecciona a '/home' como ruta por defecto
-  { path: 'home', component: HomeComponent },  // Ruta para la página principal
-  { path: 'registro', component: FormRegistrationComponent },  // Ruta para el formulario de registro
-  { path: 'login', component: FormLoginComponent },  // Ruta para el formulario de login
-  { path: 'contact', component: ContactComponent },  // Ruta para la página de contacto
-  { path: 'dashboard', component: DashboardComponent }  // Ruta para el Dashboard
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'registro', component: FormRegistrationComponent },
+  { path: 'login', component: FormLoginComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }  // Protege la ruta del Dashboard
 ];
 
 @NgModule({
