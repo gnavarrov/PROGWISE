@@ -8,7 +8,6 @@
 </head>
 <body>
 
-
 <app-navbar-registro></app-navbar-registro>
 
 <div class="container">
@@ -26,12 +25,12 @@
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <!-- PARTE DE RELLENAR CON DATOS -->
         <div class="form-group">
-          <input type="email" formControlName="email" id="email" class="form-control" autocomplete="username">
           <label for="email">Email</label>
+          <input type="email" formControlName="email" id="email" class="form-control" autocomplete="username">
         </div>
         <div class="form-group">
-          <input type="password" formControlName="password" id="password" class="form-control" autocomplete="current-password">
           <label for="password">Contraseña</label>
+          <input type="password" formControlName="password" id="password" class="form-control" autocomplete="current-password">
         </div>
         <button type="submit" class="btn">Iniciar sesión</button>
       </form>
