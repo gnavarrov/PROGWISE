@@ -44,4 +44,18 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!localStorage.getItem('userToken');
   }
+
+  obtenerUsuarioAutenticado(): any {
+    const token = localStorage.getItem('userToken');
+    if (!token) {
+      return null;
+    }
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.user;
+    } catch (error) {
+      console.error('Error parsing token', error);
+      return null;
+    }
+  }
 }

@@ -15,7 +15,6 @@ import { FormLoginComponent } from './form-login/form-login.component';
 import { ContactComponent } from './contact/contact.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {NavbarUsuariologgedComponent} from "./navbar-usuariologged/navbar-usuariologged.component";
-import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     ContactComponent,
     DashboardComponent,
     NavbarUsuariologgedComponent,
-    NavbarUsuariologgedComponent,
-    AboutUsComponent
+    NavbarUsuariologgedComponent
   ],
   imports: [
     BrowserModule,

@@ -5,7 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './navbar-home.component.html',
   styleUrls: ['./navbar-home.component.scss']
 })
-export class NavbarHomeComponent {
-
-  protected readonly Component = Component;
-}
+export class NavbarHomeComponent { }

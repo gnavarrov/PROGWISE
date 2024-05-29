@@ -1,0 +1,56 @@
+<div class="container workspace-container">
+  <h2>Proyectos</h2>
+  <button type="button" class="btn btn-primary mb-4" (click)="crearProyecto()">Crear Nuevo Proyecto</button>
+
+  <div class="proyectos-grid">
+    <div class="proyecto-card card mb-3" *ngFor="let proyecto of proyectos">
+      <div class="card-body">
+        <h5 class="card-title">{{ proyecto.nombre }}</h5>
+        <p class="card-text"><strong>Tipo:</strong> {{ proyecto.tipo }}</p>
+        <p class="card-text"><strong>Descripción:</strong> {{ proyecto.descripcion }}</p>
+        <div class="proyecto-actions">
+          <button (click)="editarProyecto(proyecto)" class="btn btn-secondary me-2">Editar</button>
+          <button (click)="eliminarProyecto(proyecto)" class="btn btn-danger">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="crearProyectoModal" tabindex="-1" aria-labelledby="crearProyectoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="crearProyectoModalLabel">Crear Nuevo Proyecto</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group mb-3">
+            <label for="nombreProyecto">Nombre del Proyecto</label>
+            <input type="text" class="form-control" id="nombreProyecto" [(ngModel)]="nuevoProyecto.nombre" name="nombreProyecto">
+          </div>
+          <div class="form-group mb-3">
+            <label for="tipoProyecto">Tipo de Proyecto</label>
+            <input type="text" class="form-control" id="tipoProyecto" [(ngModel)]="nuevoProyecto.tipo" name="tipoProyecto">
+          </div>
+          <div class="form-group mb-3">
+            <label for="descripcionProyecto">Descripción del Proyecto</label>
+            <textarea class="form-control" id="descripcionProyecto" [(ngModel)]="nuevoProyecto.descripcion" name="descripcionProyecto"></textarea>
+          </div>
+          <div class="form-group mb-3">
+            <label for="colaboradoresProyecto">Colaboradores</label>
+            <select multiple class="form-control" id="colaboradoresProyecto" [(ngModel)]="nuevoProyecto.colaboradoresIds" name="colaboradoresProyecto">
+              <option *ngFor="let usuario of usuarios" [ngValue]="usuario.usuarioId">{{ usuario.nombre }}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="guardarProyecto()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
