@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long usuario_id;
+    private Long usuarioId;  // Renombrado a usuarioId
 
     @Column(nullable = false, length = 45)
     private String nombre;

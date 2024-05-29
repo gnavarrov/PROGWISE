@@ -32,7 +32,7 @@ public class UsuarioController {
         Usuario registrado = usuarioService.registrarUsuario(usuario);
 
         // Configuración de la cookie para la sesión
-        Cookie cookie = new Cookie("userSession", registrado.getUsuario_id().toString());
+        Cookie cookie = new Cookie("userSession", registrado.getUsuarioId().toString());
         cookie.setHttpOnly(true);
         cookie.setPath("/");
         response.addCookie(cookie);
@@ -45,7 +45,7 @@ public class UsuarioController {
         Usuario usuarioAutenticado = usuarioService.autenticarUsuario(usuario.getCorreo(), usuario.getContraseña());
         if (usuarioAutenticado != null) {
             // Configuración de la cookie para la sesión
-            Cookie cookie = new Cookie("userSession", usuarioAutenticado.getUsuario_id().toString());
+            Cookie cookie = new Cookie("userSession", usuarioAutenticado.getUsuarioId().toString());
             cookie.setHttpOnly(true);
             cookie.setPath("/");
             response.addCookie(cookie);
