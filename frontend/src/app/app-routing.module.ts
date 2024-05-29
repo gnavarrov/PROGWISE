@@ -5,7 +5,8 @@ import { FormRegistrationComponent } from './form-registration/form-registration
 import { FormLoginComponent } from './form-login/form-login.component';
 import { ContactComponent } from './contact/contact.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthGuard } from './guards/auth.guard';  // Importa el AuthGuard
+import { AuthGuard } from './guards/auth.guard';
+import {AboutUsComponent} from "./about-us/about-us.component";  // Importa el AuthGuard
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'registro', component: FormRegistrationComponent },
   { path: 'login', component: FormLoginComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'aboutUs', component: AboutUsComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }  // Protege la ruta del Dashboard
 ];
 

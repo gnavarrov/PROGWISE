@@ -1,67 +1,4 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f8f9fa;
-}
 
-.row {
-  width: 100%;
-  max-width: 400px;
-  background: #fff;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.form-box {
-  width: 100%;
-}
-
-.form-group {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.form-control {
-  width: 100%;
-  padding: 10px 15px;
-  font-size: 16px;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  background-color: #fff;
-  background-clip: padding-box;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.form-control:focus {
-  border-color: #80bdff;
-  outline: 0;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-label {
-  position: absolute;
-  top: -10px;
-  left: 15px;
-  background: #fff;
-  padding: 0 5px;
-  font-size: 12px;
-  color: #6c757d;
-}
-
-.btn-primary {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 4px;
-}
 /* Estilos generales */
 body {
   background-color: #f4f4f4;
@@ -117,7 +54,7 @@ h4 {
 /* Tamaño del formulario */
 .container {
   max-width: 80%;
-  margin-top: 5%;
+
 }
 
 /* Estilos de los inputs */
@@ -137,32 +74,60 @@ h4 {
   box-shadow: none;
 }
 
+/* Estilos de los inputs */
+.form-control {
+  border: none;
+  border-bottom: 2px solid #466466;
+  border-radius: 0;
+  padding-left: 10px;
+  background-color: #e4e5e3;
+  color: #333; /* Asegura que el texto sea visible */
+  transition: border-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra ligera */
+  font-size: 0.8rem; /* Tamaño de fuente más pequeño */
+}
+
+.form-control:focus {
+  border-color: #8c8c8c;
+  box-shadow: none;
+}
+
 /* Estilos del formulario */
 .form-box {
   border: 2px solid #466466;
   background-color: rgba(70, 100, 102, 0.3); /* Añade transparencia al color de fondo */
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  padding: 50px;
+  padding: 30px; /* Reducir el padding */
 }
 
 .form-group {
-  margin-top: 20px;
+  margin-top: 15px; /* Reducir el margen superior */
   color: #466466;
   font-weight: bold;
 }
 
-/* Botón de envío */
+/* Botón de registro */
 .btn {
   background-color: #466466;
   color: #e4e5e3;
   border-radius: 10px;
   width: 100%;
-  margin-top: 10px;
   transition: background-color 0.3s ease;
+  font-size: 1rem; /* Tamaño de fuente */
 }
 
 .btn:hover {
   background-color: #e4e5e3;
   color: #466466;
+}
+
+
+.error-message {
+  color: #d9534f; /* Color rojo para indicar un mensaje de error */
+  background-color: #f2dede; /* Color de fondo */
+  padding: 10px; /* Espacio interno */
+  border: 1px solid #ebccd1; /* Borde rojo */
+  border-radius: 4px; /* Bordes redondeados */
+  margin-top: 10px; /* Espacio superior */
 }
