@@ -10,8 +10,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class FormRegistrationComponent implements OnInit {
   registerForm!: FormGroup;
-  errorMessage: string = ''; // Agrega esta propiedad
-  preferencesRequiredError: string = 'Debes seleccionar al menos una preferencia.'; // Agrega esta propiedad
+  errorMessage: string = '';
+  preferencesRequiredError: string = 'Debes seleccionar al menos una preferencia.';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,16 +32,29 @@ export class FormRegistrationComponent implements OnInit {
         database: new FormControl(false)
       })
     });
+
+    // Suscribirse a los cambios en el formulario de preferencias
+    this.registerForm.get('preferencias')!.valueChanges.subscribe(() => {
+      this.validatePreferences();
+    });
+
+    // Validar preferencias al inicio
+    this.validatePreferences();
   }
 
-  // Agrega este método para manejar la validación de preferencias
+  validatePreferences(): void {
+    const preferencesSelected = this.preferenceSel();
+    this.preferencesRequiredError = preferencesSelected ? '' : 'Debes seleccionar al menos una preferencia.';
+  }
+
   preferenceSel(): boolean {
     const prefs = this.registerForm.get('preferencias') as FormGroup;
     return Object.values(prefs.controls).some(control => control.value);
   }
 
   onRegister(): void {
-    if (this.registerForm.valid) {
+    this.validatePreferences();
+    if (this.registerForm.valid && this.preferenceSel()) {
       const formData = {
         nombre: this.registerForm.value.nombre,
         apellido: this.registerForm.value.apellido,

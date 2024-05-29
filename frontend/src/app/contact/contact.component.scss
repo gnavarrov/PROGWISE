@@ -6,11 +6,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Establece la altura del body al 100% de la ventana del navegador */
-  margin: 0; /* Elimina el margen predeterminado del body */
+  height: 140vh; /* Establece la altura del body al 100% de la ventana del navegador */
 }
-
-/* Estilos para tamaños de pantalla pequeños (móviles) */
+//----------- ESTILOS PARA TAMAÑOS DE PANTALLA PEQUEÑOS (MÓVILES) ------------
 @media (max-width: 768px) {
   body {
     height: auto; /* Elimina la altura fija */
@@ -25,6 +23,10 @@ body {
     font-size: 2rem; /* Reduce el tamaño del título */
   }
 
+  h4 {
+    font-size: 0.9rem; /* Reduce el tamaño del subtítulo */
+  }
+
   .btn {
     margin-top: 15px; /* Reduce el margen superior del botón */
   }
@@ -37,6 +39,7 @@ h2 {
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
   color: #484848;
+  margin-top: -10%;
 }
 
 h4 {
@@ -51,27 +54,19 @@ h4 {
   margin-bottom: 2%;
 }
 
+h5 {
+  text-align: justify;
+  font-size: 2rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  margin-top: 0%;
+  color: #484848;
+}
+
 /* Tamaño del formulario */
 .container {
   max-width: 80%;
-
-}
-
-/* Estilos de los inputs */
-.form-control {
-  border: none;
-  border-bottom: 2px solid #466466;
-  border-radius: 0;
-  padding-left: 10px;
-  background-color: #e4e5e3;
-  color: #e4e5e3;
-  transition: border-color 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra ligera */
-}
-
-.form-control:focus {
-  border-color: #8c8c8c;
-  box-shadow: none;
+  margin-top: 10%;
 }
 
 /* Estilos de los inputs */
@@ -107,11 +102,13 @@ h4 {
   font-weight: bold;
 }
 
-/* Botón de registro */
+
+/* Botón de envío */
 .btn {
   background-color: #466466;
   color: #e4e5e3;
   border-radius: 10px;
+  margin-top: 25%;
   width: 100%;
   transition: background-color 0.3s ease;
   font-size: 1rem; /* Tamaño de fuente */
@@ -123,11 +120,15 @@ h4 {
 }
 
 
-.error-message {
-  color: #d9534f; /* Color rojo para indicar un mensaje de error */
-  background-color: #f2dede; /* Color de fondo */
-  padding: 10px; /* Espacio interno */
-  border: 1px solid #ebccd1; /* Borde rojo */
-  border-radius: 4px; /* Bordes redondeados */
-  margin-top: 10px; /* Espacio superior */
+/* Mapa de ubicación */
+.mapa-ubicacion {
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  margin-top: 20px;
 }
+
+
+
+
+
